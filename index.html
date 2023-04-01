@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Drawing Program</title>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing Program</title>
 </head>
-
 <body>
+    <h1>Drawing Program</h1>
+    <canvas id="imgCanvas" width="600" height="400" onclick="draw(event)"></canvas>
 
-<h1>Drawing Program</h1>
-<canvas id="imgCanvas" width="600" height="400" onclick="draw(event)"></canvas>
+    <script>
+        
 
-<script>
-    function draw(event) {
-    var canvas = document.getElementById("imgCanvas");
-    var ctx = canvas.getContext("2d");
-    var rect = canvas.getBoundingClientRect();
-    var posx = event.clientX - rect.left;
-    var posy = event.clienty - rect.top;
+        function draw(event) {
+            var canvas = document.getElementById("imgCanvas");
+            var ctx = canvas.getContext("2d");
+            var rect = canvas.getBoundingClientRect();
+            var posx = event.clientX - rect.left;
+            var posy = event.clientY - rect.top;
 
-    ctx.fillStyle = "#aaaaff";
-    ctx.beginPath();
-    ctx.arc (posx, posy, 50, 0, Math.PI * 2);
-    ctx.fill();
+            ctx.fillStyle = "#000000";
+            ctx.beginPath();
+            ctx.arc(posx,posy, 50, 0, Math.PI * 2);
+            ctx.fill();
 
-}
 
-</script>
 
+        }
+    </script>
 </body>
 </html>
