@@ -11,23 +11,36 @@
     <canvas id="imgCanvas" width="600" height="400" onclick="draw(event)"></canvas>
 
     <script>
+       function draw(event) {
+        var canvas = document.getElementById("imgCanvas");
+        var ctx = canvas.getContext("2d");
+        var rect = canvas.getBoundingClientRect();
+        var cx = rect.width / 2;
+        var cy = rect.height / 2;
+        var posx = event.clientX - rect.left;
+        var posy = event.clientY - rect.top;
+        var dx = posx - cx;
+        var dy = posy - cy;
+        var angle = Math.atan2(dy, dx);
+        var radius = Math.sqrt(dx*dx + dy*dy);
+        var delta = 10; // шаг изменения угла
+        var revolutions = 2; // количество оборотов
+        var steps = Math.ceil(2*Math.PI*revolutions / delta); // количество шагов для спирали
+        var startAngle = angle - delta * steps / 2;
         
-
-        function draw(event) {
-            var canvas = document.getElementById("imgCanvas");
-            var ctx = canvas.getContext("2d");
-            var rect = canvas.getBoundingClientRect();
-            var posx = event.clientX - rect.left;
-            var posy = event.clientY - rect.top;
-
-            ctx.fillStyle = "#000000";
-            ctx.beginPath();
-            ctx.arc(posx,posy, 50, 0, Math.PI * 2);
-            ctx.fill();
-
-
-
+        ctx.strokeStyle = "#000000";
+        ctx.beginPath();
+        ctx.moveTo(posx, posy);
+        for (var i = 1; i <= steps; i++) {
+            angle = startAngle + delta * i;
+            radius += 2; // шаг изменения радиуса
+            var x = cx + radius * Math.cos(angle);
+            var y = cy + radius * Math.sin(angle);
+            ctx.lineTo(x, y);
         }
+          ctx.stroke();
+}
+
     </script>
 </body>
 </html>
