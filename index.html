@@ -8,10 +8,10 @@
 </head>
 <body>
     <h1>Drawing Program</h1>
-    <canvas id="imgCanvas" width="600" height="400" onclick="draw(event)"></canvas>
+    <canvas id="imgCanvas" width="600" height="490" onclick="draw(event)" onmousemove="draw(event)" >
 
-    <script>
-       function draw(event) {
+        <script>     
+        function draw(event) {
         var canvas = document.getElementById("imgCanvas");
         var ctx = canvas.getContext("2d");
         var rect = canvas.getBoundingClientRect();
@@ -32,13 +32,13 @@
         ctx.beginPath();
         ctx.moveTo(posx, posy);
         for (var i = 1; i <= steps; i++) {
-            angle = startAngle + delta * i;
-            radius += 2; // шаг изменения радиуса
-            var x = cx + radius * Math.cos(angle);
-            var y = cy + radius * Math.sin(angle);
-            ctx.lineTo(x, y);
-        }
-          ctx.stroke();
+          angle = startAngle + delta * i;
+          radius += 2; // шаг изменения радиуса
+          var x = cx + radius * Math.cos(angle);
+          var y = cy + radius * Math.sin(angle);
+          ctx.lineTo(x, y);
+  }
+         ctx.stroke();
 }
 
     </script>
